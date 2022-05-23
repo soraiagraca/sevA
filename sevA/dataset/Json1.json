@@ -1,0 +1,204 @@
+{
+	"name": "Json1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "Alumni Company Reviews.txt",
+				"container": "source"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"surveys": {
+					"type": "object",
+					"properties": {
+						"survey": {
+							"type": "array",
+							"items": {
+								"type": "object",
+								"properties": {
+									"censored": {
+										"type": "object",
+										"properties": {
+											"@type": {
+												"type": "string"
+											},
+											"_value_": {
+												"type": "boolean"
+											}
+										}
+									},
+									"comments": {
+										"type": "object",
+										"properties": {
+											"@nil": {
+												"type": "boolean"
+											}
+										}
+									},
+									"completed-at": {
+										"type": "object",
+										"properties": {
+											"@type": {
+												"type": "string"
+											},
+											"_value_": {
+												"type": "string"
+											}
+										}
+									},
+									"flagged-for-follow-up": {
+										"type": "object",
+										"properties": {
+											"@type": {
+												"type": "string"
+											},
+											"_value_": {
+												"type": "boolean"
+											}
+										}
+									},
+									"has-notes": {
+										"type": "object",
+										"properties": {
+											"@type": {
+												"type": "string"
+											},
+											"_value_": {
+												"type": "boolean"
+											}
+										}
+									},
+									"invited-at": {
+										"type": "object",
+										"properties": {
+											"@type": {
+												"type": "string"
+											},
+											"_value_": {
+												"type": "string"
+											}
+										}
+									},
+									"net-promoter-label": {
+										"type": "string"
+									},
+									"organization-id": {
+										"type": "object",
+										"properties": {
+											"@type": {
+												"type": "string"
+											},
+											"_value_": {
+												"type": "integer"
+											}
+										}
+									},
+									"public-response": {
+										"type": "object",
+										"properties": {
+											"@nil": {
+												"type": "boolean"
+											}
+										}
+									},
+									"recommendation-likelihood": {
+										"type": "object",
+										"properties": {
+											"@type": {
+												"type": "string"
+											},
+											"_value_": {
+												"type": "integer"
+											}
+										}
+									},
+									"updated-at": {
+										"type": "object",
+										"properties": {
+											"@type": {
+												"type": "string"
+											},
+											"_value_": {
+												"type": "string"
+											}
+										}
+									},
+									"unique-id": {
+										"type": "object",
+										"properties": {
+											"@type": {
+												"type": "string"
+											},
+											"_value_": {
+												"type": "integer"
+											}
+										}
+									},
+									"job-reference": {
+										"type": "string"
+									},
+									"organization-reference": {
+										"type": "string"
+									},
+									"customer-reference": {
+										"type": "integer"
+									},
+									"customer-full-name": {
+										"type": "string"
+									},
+									"customer-work-email": {
+										"type": "string"
+									},
+									"customer-work-city": {
+										"type": "object",
+										"properties": {
+											"@nil": {
+												"type": "boolean"
+											}
+										}
+									},
+									"customer-work-region": {
+										"type": "string"
+									},
+									"organization-name": {
+										"type": "string"
+									},
+									"public-reviewer-name": {
+										"type": "string"
+									},
+									"public-display-comments": {
+										"type": "null"
+									},
+									"public-display-customer-location": {
+										"type": "string"
+									},
+									"notes": {
+										"type": "object",
+										"properties": {
+											"@type": {
+												"type": "string"
+											}
+										}
+									}
+								}
+							}
+						},
+						"@type": {
+							"type": "string"
+						}
+					}
+				}
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,62 @@
+{
+	"name": "dataflow1",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "Json1",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "AzureSqlTable1",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "flatten1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          surveys as ({@type} as string, survey as (censored as ({@type} as string, {_value_} as boolean), comments as string, {completed-at} as ({@type} as string, {_value_} as string), {customer-full-name} as string, {customer-reference} as integer, {customer-work-city} as string, {customer-work-email} as string, {customer-work-region} as string, {flagged-for-follow-up} as ({@type} as string, {_value_} as boolean), {has-notes} as ({@type} as string, {_value_} as boolean), {invited-at} as ({@type} as string, {_value_} as string), {job-reference} as string, {net-promoter-label} as string, notes as ({@type} as string, note as ({@type} as string, {author-name} as string, body as string, {communication-type} as string, {created-at} as ({@type} as string, {_value_} as string))[]), {organization-id} as ({@type} as string, {_value_} as long), {organization-name} as string, {organization-reference} as string, {public-display-comments} as string, {public-display-customer-location} as string, {public-response} as ({@nil} as boolean), {public-reviewer-name} as string, {recommendation-likelihood} as ({@type} as string, {_value_} as short), {unique-id} as ({@type} as string, {_value_} as long), {updated-at} as ({@type} as string, {_value_} as string))[])",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     documentForm: 'arrayOfDocuments') ~> source1",
+				"source1 foldDown(unroll(surveys.survey, surveys.survey),",
+				"     mapColumn(",
+				"          {author-name} = surveys.survey.notes.note.{author-name},",
+				"          body = surveys.survey.notes.note.body,",
+				"          {communication-type} = surveys.survey.notes.note.{communication-type},",
+				"          {created-at} = surveys.survey.censored.{_value_}",
+				"     ),",
+				"     skipDuplicateMapInputs: false,",
+				"     skipDuplicateMapOutputs: false) ~> flatten1",
+				"flatten1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError',",
+				"     partitionBy('hash', 1),",
+				"     preCommands: [],",
+				"     postCommands: []) ~> sink1"
+			]
+		}
+	}
+}
