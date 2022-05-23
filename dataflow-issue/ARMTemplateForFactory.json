@@ -71,7 +71,7 @@
 			"properties": {
 				"activities": [
 					{
-						"name": "Copy datatest",
+						"name": "Copy datatest1",
 						"type": "Copy",
 						"dependsOn": [],
 						"policy": {
