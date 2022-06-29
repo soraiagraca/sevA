@@ -1,10 +1,11 @@
 {
 	"name": "AzureKeyVaultDriverPayProd",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
 	"properties": {
 		"annotations": [],
 		"type": "AzureKeyVault",
 		"typeProperties": {
-			"baseUrl": "https://keyvault-sg-L200.vault.azure.net/"
+			"baseUrl": "https://kv-driver-pay-prod-eus.vault.azure.net/"
 		}
 	}
 }
