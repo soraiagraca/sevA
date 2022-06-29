@@ -1,0 +1,10 @@
+{
+	"name": "AzureKeyVaultDriverPayProd",
+	"properties": {
+		"annotations": [],
+		"type": "AzureKeyVault",
+		"typeProperties": {
+			"baseUrl": "https://keyvault-sg-L200.vault.azure.net/"
+		}
+	}
+}
