@@ -5,8 +5,15 @@
 		"annotations": [],
 		"type": "AzurePostgreSql",
 		"typeProperties": {
-			"connectionString": "host=t5t5t65y;port=5432;database=erw4rw4t;uid=rettt;encryptionmethod=0",
-			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIkRBVEFGQUNUT1JZQDVGRTA3OUI0LTY5MTAtNEU4MS04NEVCLTMwNjgwNUU2MUY0NV9hNjllNDYxOC0yMmVjLTQxMjEtYWFlYy0xODM1MmFjMThjNmYiDQp9"
+			"connectionString": "Host=pg-driver-pay-prod-eus.postgres.database.azure.com;Port=5432;Database=api-prod;UID=datafactory@pg-driver-pay-prod-eus;EncryptionMethod=1;ValidateServerCertificate=1;Timeout=600;CommandTimeout=0",
+			"password": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "AzureKeyVaultDriverPayProd",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": "datafactory-pg-password"
+			}
 		}
 	}
 }
