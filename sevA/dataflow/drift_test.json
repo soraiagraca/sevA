@@ -12,16 +12,31 @@
 					"name": "source1"
 				}
 			],
-			"sinks": [],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "DelimitedText1",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
 			"transformations": [],
 			"scriptLines": [
-				"source(allowSchemaDrift: true,",
+				"source(output(",
+				"          Parties as (Party as (GegevensNieuw as (ADRES1 as string, ADRES2 as string, ADRES3 as string, ADRSRT as string, LAND as string, {_value_} as string), GegevensOud as (ADRSRT as string, HUISNR as string, LAND as string, PCODE as string, PLAATS as string, STRAAT as string, TOEVOEG as string, {_value_} as string), Relatiegegevens as (ANAAM as string, BRONNM as string, BR_RELNUM as string, {_value_} as string), Wijzigingsgegevens as (INGDTW as string, X_MURED as string, X_OORSPRONG as string, X_RELNUM as string, X_TRACACT as string, X_USER as string, {_value_} as string))[])",
+				"     ),",
+				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     inferDriftedColumnTypes: true,",
 				"     ignoreNoFilesFound: false,",
 				"     validationMode: 'none',",
 				"     namespaces: true,",
-				"     partitionBy('hash', 1)) ~> source1"
+				"     partitionBy('hash', 1)) ~> source1",
+				"source1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> sink1"
 			]
 		}
 	}
